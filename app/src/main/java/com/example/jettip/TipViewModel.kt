@@ -3,6 +3,7 @@ package com.example.jettip
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import kotlin.math.roundToInt
 
 class TipViewModel : ViewModel() {
 
@@ -59,6 +60,7 @@ class TipViewModel : ViewModel() {
     }
 
     fun getTotalPerPerson() : Float {
-        return (moneyAmount.value + moneyAmount.value * tipPercent.value) / splitAmount.value
+        val percentageNormalized = (tipPercent.value * 100).roundToInt() / 100.0f
+        return (moneyAmount.value + moneyAmount.value * percentageNormalized) / splitAmount.value
     }
 }
